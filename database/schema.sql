@@ -69,3 +69,19 @@ CREATE TABLE tickers_hk (
     INDEX idx_list_status (list_status)
 );
 
+CREATE TABLE daily_prices_realtime_cn (
+    code VARCHAR(20) NOT NULL COMMENT 'Stock Code',
+    trade_date DATE NOT NULL COMMENT 'Trade Date',
+    open FLOAT NOT NULL COMMENT 'Opening Price',
+    high FLOAT NOT NULL COMMENT 'Highest Price',
+    low FLOAT NOT NULL COMMENT 'Lowest Price',
+    close FLOAT NOT NULL COMMENT 'Closing Price',
+    pre_close FLOAT NOT NULL COMMENT 'Previous Closing Price (Adjusted)',
+    chg FLOAT NOT NULL COMMENT 'Price Change',
+    pct_chg FLOAT NOT NULL COMMENT 'Percentage Change (Adjusted)',
+    volume FLOAT NOT NULL COMMENT 'Trading Volume (in lots)',
+    amount FLOAT NOT NULL COMMENT 'Trading Amount (in thousand yuan)',
+    PRIMARY KEY (code, trade_date)  -- Composite primary key
+);
+
+

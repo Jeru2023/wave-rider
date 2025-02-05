@@ -56,10 +56,20 @@ class DailyPricesAPI:
 
         logger.info("All batches processed successfully.")
 
+    def update_moving_averages(self, region):
+        df = self.repo.calculate_moving_averages_batch(region)
+        df['region'] = region
+        print(f"Updating {len(df)} rows of moving averages.")
+
+        if not df.empty:
+            self.repo.delete_ma(region)
+            self.repo.insert(df, "moving_averages")
+
 
 if __name__ == '__main__':
     daily_prices_api = DailyPricesAPI()
     daily_prices_api.update_daily_price_realtime_cn()
+    #daily_prices_api.update_moving_averages('cn')
 
 
 

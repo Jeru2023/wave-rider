@@ -2,9 +2,13 @@ from sqlalchemy import create_engine
 import configparser as cp
 import os
 from tools import utils
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
-class Database:
+class Connection:
     def __init__(self):
         self.engine = self._create_engine()
 
@@ -19,6 +23,12 @@ class Database:
         host = config.get('DB', 'host')
         port = config.get('DB', 'port')
         database = config.get('DB', 'database')
+        enable_sql_logging = config.getboolean('DB', 'enable_sql_logging')
+
+        if enable_sql_logging:
+            # enable SQLAlchemy sql logging
+            sqlalchemy_logger = logging.getLogger('sqlalchemy.engine')
+            sqlalchemy_logger.setLevel(logging.INFO)
 
         return create_engine(
             'mysql+pymysql://{}:{}@{}:{}/{}'.format(user, password, host, port, database),
