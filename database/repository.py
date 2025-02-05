@@ -38,3 +38,7 @@ class Repository:
     def query_cn_tickers(self):
         sql = "select * from tickers_cn where list_status='L';"
         return self.query(sql)
+
+    def query_us_tickers(self):
+        sql = "select * from tickers_us where list_status='L';"
+        return self.query(sql)
