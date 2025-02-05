@@ -84,4 +84,16 @@ CREATE TABLE daily_prices_realtime_cn (
     PRIMARY KEY (code, trade_date)  -- Composite primary key
 );
 
-
+CREATE TABLE moving_averages(
+    trade_date   date           NOT NULL,
+    code         varchar(10)    NOT NULL,
+    current_price  decimal(15, 4) NULL,
+    ma_20          decimal(15, 4) NULL,
+    ma_50          decimal(15, 4) NULL,
+    ma_150         decimal(15, 4) NULL,
+    ma_200         decimal(15, 4) NULL,
+    high_of_52weeks decimal(15, 4) NULL,
+    low_of_52weeks decimal(15, 4) NULL,
+    region         varchar(10) NOT NULL,
+    PRIMARY KEY (trade_date, code)
+);

@@ -95,7 +95,7 @@ class Repository:
         return self.query(sql)
 
     def delete_ma(self, region):
-        sql = f"delete from moving_averages where region={region}"
+        sql = f"delete from moving_averages where region='{region}'"
         self.execute(sql)
 
 

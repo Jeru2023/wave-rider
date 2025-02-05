@@ -68,8 +68,8 @@ class DailyPricesAPI:
 
 if __name__ == '__main__':
     daily_prices_api = DailyPricesAPI()
-    daily_prices_api.update_daily_price_realtime_cn()
-    #daily_prices_api.update_moving_averages('cn')
+    # daily_prices_api.update_daily_price_realtime_cn()
+    daily_prices_api.update_moving_averages('cn')
 
 
 
