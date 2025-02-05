@@ -3,9 +3,12 @@ from sqlalchemy import text
 import logging
 from database.database import Database
 
-# 配置日志
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# 启用 SQLAlchemy 的 SQL 语句日志记录
+sqlalchemy_logger = logging.getLogger('sqlalchemy.engine')
+sqlalchemy_logger.setLevel(logging.INFO)
 
 
 class Repository:

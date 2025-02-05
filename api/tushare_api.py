@@ -58,3 +58,16 @@ class TushareAPI:
             return pd.concat(all_data, ignore_index=True)
         return pd.DataFrame()
 
+    def get_daily_prices_cn(self, code_list, start_date, end_date):
+        code_list_str = ','.join(code_list)
+        # date format: yyyymmdd
+        df = self.pro.daily(ts_code=code_list_str, start_date=start_date, end_date=end_date)
+        # rename multiple columns
+        df = df.rename(columns={'ts_code': 'code', 'change': 'chg', 'vol': 'volume'})
+        return df
+
+
+if __name__ == '__main__':
+    tushare_api = TushareAPI()
+    df = tushare_api.pro.daily(ts_code='000001.SZ,600000.SH', start_date='20180701', end_date='20180718')
+    print(df)

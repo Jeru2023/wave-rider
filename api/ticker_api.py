@@ -20,6 +20,11 @@ class TickerAPI:
         df = self.ts_api.get_tickers_us()
         self.repo.insert(df, 'tickers_us')
 
+    def get_cn_tickers(self):
+        df = self.repo.query_cn_tickers()
+        code_list = df['ts_code'].tolist()
+        return code_list
+
 
 if __name__ == '__main__':
     ticker_api = TickerAPI()
