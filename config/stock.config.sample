@@ -8,3 +8,6 @@ database=wave-rider
 [AlphaVantage]
 base_url=https://www.alphavantage.co/query
 api_key=YOUR_KEY
+
+[TuShare]
+token=YOUR_TOKEN
