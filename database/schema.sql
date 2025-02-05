@@ -27,14 +27,45 @@ CREATE TABLE tickers_cn (
 CREATE TABLE tickers_us (
     ts_code VARCHAR(20) NOT NULL,
     name VARCHAR(100) NULL,
-    en_name VARCHAR(100) NOT NULL,
+    enname VARCHAR(100) NOT NULL,
     classify VARCHAR(100) NOT NULL,
     list_date DATE NOT NULL,
     delist_date DATE NULL,
     update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     list_status CHAR(1) DEFAULT 'L' NOT NULL,
-    PRIMARY KEY (ts_code),
-    INDEX idx_name (name),
+    INDEX idx_list_status (list_status)
+);
+
+CREATE TABLE tickers_hk (
+    ts_code VARCHAR(20) NOT NULL,
+    name VARCHAR(100) NOT NULL COMMENT 'Stock Abbreviation',
+    fullname VARCHAR(255) NOT NULL COMMENT 'Full Company Name',
+    enname VARCHAR(100) NOT NULL COMMENT 'English Name',
+    cn_spell VARCHAR(100) NOT NULL COMMENT 'Pinyin',
+    market VARCHAR(50) NOT NULL COMMENT 'Market Category',
+    list_status VARCHAR(20) NOT NULL COMMENT 'Listing Status',
+    list_date DATE NOT NULL COMMENT 'Listing Date',
+    delist_date DATE NULL COMMENT 'Delisting Date',
+    update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Update Time',
+    PRIMARY KEY (ts_code),  -- ts_code as primary key
+    INDEX idx_list_status (list_status)
+);
+
+CREATE TABLE tickers_hk (
+    ts_code VARCHAR(20) NOT NULL,
+    name VARCHAR(100) NOT NULL COMMENT 'Stock Abbreviation',
+    fullname VARCHAR(255) NOT NULL COMMENT 'Full Company Name',
+    enname VARCHAR(100) NOT NULL COMMENT 'English Name',
+    cn_spell VARCHAR(100) NOT NULL COMMENT 'Pinyin',
+    market VARCHAR(50) NOT NULL COMMENT 'Market Category',
+    list_status VARCHAR(20) NOT NULL COMMENT 'Listing Status',
+    list_date DATE NOT NULL COMMENT 'Listing Date',
+    delist_date DATE COMMENT 'Delisting Date',
+    trade_unit FLOAT NULL COMMENT 'Trade Unit',
+    isin VARCHAR(12) NULL COMMENT 'ISIN Code',
+    curr_type VARCHAR(10) NULL COMMENT 'Currency Code',
+    update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Update Time',
+    PRIMARY KEY (ts_code),  -- ts_code as primary key
     INDEX idx_list_status (list_status)
 );
 

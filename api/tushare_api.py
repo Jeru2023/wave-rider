@@ -22,6 +22,10 @@ class TushareAPI:
         df = self.pro.stock_basic(exchange='', list_status='L', fields=columns, offset=5397)
         return df
 
+    def get_tickers_hk(self):
+        df = self.pro.hk_basic(list_status='L')
+        return df
+
     def get_tickers_us(self):
         all_data = []
         offset = 0
